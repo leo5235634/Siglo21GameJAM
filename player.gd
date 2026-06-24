@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @export var speed: float = 10  
+@export var stats: Stats
 
 func _ready() -> void:
 	Global.Player = self

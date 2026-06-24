@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Assets/Scripts/upgrade_menu.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Assets/Scripts/gear_decoration.gd" id="2_gears"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.73, 0.54, 0.23, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.31, 0.07, 0.025, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_option"]
+bg_color = Color(0.24, 0.075, 0.03, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.88, 0.55, 0.14, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="UpgradeMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 20
+script = ExtResource("1_upgrade")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.06, 0.025, 0.008, 0.62)
+
+[node name="TopLeftGears" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_gears")
+ink_color = Color(0.22, 0.04, 0.012, 0.72)
+brass_color = Color(0.86, 0.48, 0.08, 0.45)
+
+[node name="BottomRightGears" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_gears")
+corner = 3
+ink_color = Color(0.22, 0.04, 0.012, 0.72)
+brass_color = Color(0.86, 0.48, 0.08, 0.45)
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -150.0
+offset_right = 230.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.035, 0.01, 1)
+theme_override_font_sizes/font_size = 32
+text = "Nivel"
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.095, 0.025, 1)
+text = "Elige una mejora"
+horizontal_alignment = 1
+
+[node name="OptionButtons" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="OptionButton1" type="Button" parent="Panel/VBoxContainer/OptionButtons"]
+layout_mode = 2
+focus_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.96, 0.78, 0.38, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_option")
+text = "Opcion 1"
+
+[node name="OptionButton2" type="Button" parent="Panel/VBoxContainer/OptionButtons"]
+layout_mode = 2
+focus_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.96, 0.78, 0.38, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_option")
+text = "Opcion 2"
+
+[node name="OptionButton3" type="Button" parent="Panel/VBoxContainer/OptionButtons"]
+layout_mode = 2
+focus_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.96, 0.78, 0.38, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_option")
+text = "Opcion 3"

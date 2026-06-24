@@ -1,24 +1,45 @@
 [gd_scene format=3 uid="uid://ckgoi32vehqv0"]
 
 [ext_resource type="Script" uid="uid://csd34b1l3qatb" path="res://enemigo1.gd" id="1_c0ehi"]
-[ext_resource type="Texture2D" uid="uid://e12e3pvc0l8d" path="res://Assets/Images/enemies/baby_alien.png" id="2_7rc34"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Enemigo_RobotComun.png" id="2_robot"]
+[ext_resource type="Resource" uid="uid://r0rct7bui3n4" path="res://Assets/Resources/EnemyBase_stats.tres" id="2_q172i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q172i"]
-size = Vector2(24, 31)
+size = Vector2(22, 38)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1511046092]
+[sub_resource type="CircleShape2D" id="CircleShape2D_c0ehi"]
+radius = 27.301422
+
+[node name="BabyAllien" type="CharacterBody2D" unique_id=1511046092 groups=["Enemy"]]
 light_mask = 4
 visibility_layer = 9
 scale = Vector2(1.295, 1.295)
+collision_layer = 2
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_c0ehi")
 speed = 150.0
+stats = ExtResource("2_q172i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=464342022]
-position = Vector2(-2, -2.5)
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=464342022]
+position = Vector2(-2, -5)
 shape = SubResource("RectangleShape2D_q172i")
 
+[node name="Area2D" type="Area2D" parent="." unique_id=168519203]
+collision_mask = 5
+
+[node name="Area_Ataque" type="CollisionShape2D" parent="Area2D" unique_id=1730944636]
+shape = SubResource("CircleShape2D_c0ehi")
+
+[node name="Timer" type="Timer" parent="." unique_id=813011713]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
 [node name="BabyAlien" type="Sprite2D" parent="." unique_id=1097438725]
-position = Vector2(-2, -4)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_7rc34")
+position = Vector2(-2, -10)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_robot")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

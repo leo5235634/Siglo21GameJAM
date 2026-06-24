@@ -1,33 +1,107 @@
-[gd_scene format=3 uid="uid://beki1ywgtr72d"]
+[gd_scene load_steps=11 format=3 uid="uid://beki1ywgtr72d"]
 
 [ext_resource type="Script" uid="uid://djg85hjivk031" path="res://Assets/Scripts/player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://cqacq1kjny1h1" path="res://Assets/Images/one_handed.png" id="1_rpqav"]
+[ext_resource type="Resource" uid="uid://cvbkysd12sl6x" path="res://Assets/Resources/Player_stats.tres" id="2_dewec"]
 [ext_resource type="Texture2D" uid="uid://snwfuhtryh00" path="res://Assets/Images/double_barrel_shotgun_icon.png" id="3_gntrk"]
+[ext_resource type="Script" uid="uid://5me2j3ufxibw" path="res://Assets/Scripts/shotgun_weapon.gd" id="4_weapon"]
+[ext_resource type="Texture2D" path="res://Assets/Images/esfera_electrica.png" id="5_sphere"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i404"]
 size = Vector2(33, 43)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=259061177]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_bg"]
+bg_color = Color(0.08, 0.04, 0.04, 0.85)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_fill"]
+bg_color = Color(0.88, 0.12, 0.12, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dewec"]
+radius = 256.32205
+
+[node name="Player" type="CharacterBody2D" unique_id=259061177 groups=["Player"]]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_kyqiw")
 speed = 300.0
+stats = ExtResource("2_dewec")
 
 [node name="OneHanded" type="Sprite2D" parent="." unique_id=142532754]
 scale = Vector2(0.17, 0.17)
 texture = ExtResource("1_rpqav")
 
+[node name="HandAnchors" type="Node2D" parent="."]
+
+[node name="RightHand" type="Marker2D" parent="HandAnchors"]
+position = Vector2(-31, -5)
+
+[node name="LeftHand" type="Marker2D" parent="HandAnchors"]
+position = Vector2(31, -5)
+
+[node name="ElectricSphere" type="Sprite2D" parent="HandAnchors"]
+visible = false
+z_index = 2
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("5_sphere")
+
+[node name="Muzzle" type="Marker2D" parent="HandAnchors/ElectricSphere"]
+position = Vector2(0, -105)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1724357133]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_4i404")
 
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=646925469]
+offset_left = -24.0
+offset_top = 28.0
+offset_right = 24.0
+offset_bottom = 34.0
+theme_override_styles/background = SubResource("StyleBoxFlat_health_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
+show_percentage = false
+
 [node name="Weapon" type="Node2D" parent="." unique_id=1680010114]
-position = Vector2(-1, 18)
-rotation = -0.37350047
+script = ExtResource("4_weapon")
 
 [node name="DoubleBarrelShotgunIcon" type="Sprite2D" parent="Weapon" unique_id=1752828791]
-position = Vector2(29.592485, 9.44907)
-rotation = 0.37350044
-scale = Vector2(0.15000002, 0.15000002)
+z_index = 2
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("3_gntrk")
 
-[node name="Marker2D" type="Marker2D" parent="Weapon/DoubleBarrelShotgunIcon" unique_id=577706523]
-position = Vector2(73.33331, 53.333336)
+[node name="pivot" type="Marker2D" parent="Weapon/DoubleBarrelShotgunIcon" unique_id=577706523]
+position = Vector2(105, 0)
+
+[node name="cd" type="Timer" parent="Weapon" unique_id=829305007]
+wait_time = 0.2
+autostart = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=29696085]
+emitting = false
+lifetime = 0.5
+one_shot = true
+gravity = Vector2(0, 980.515)
+initial_velocity_min = 191.0
+initial_velocity_max = 191.0
+scale_amount_min = 3.0
+scale_amount_max = 8.0
+color = Color(1, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1366566080]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=764804251]
+shape = SubResource("CircleShape2D_dewec")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1174844713]
+position_smoothing_enabled = true
+
+[connection signal="timeout" from="Weapon/cd" to="." method="_on_cd_timeout"]

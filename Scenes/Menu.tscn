@@ -1,13 +1,153 @@
 [gd_scene format=3 uid="uid://b1mlwqjoxubjg"]
 
-[sub_resource type="Gradient" id="Gradient_beu5a"]
+[ext_resource type="Script" uid="uid://df1u8amt7esg5" path="res://Assets/Scripts/main_menu.gd" id="1_menu"]
+[ext_resource type="Script" uid="uid://cllrl73sb2nm4" path="res://Assets/Scripts/gear_decoration.gd" id="2_gears"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3kf3n"]
-gradient = SubResource("Gradient_beu5a")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.58, 0.39, 0.14, 1)
 
-[node name="Node2D" type="Node2D" unique_id=2983644]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inner_bg"]
+bg_color = Color(0.82, 0.66, 0.34, 0.88)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.28, 0.06, 0.025, 0.88)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=141643047]
-position = Vector2(575, 323)
-scale = Vector2(17.96875, 10.125)
-texture = SubResource("GradientTexture2D_3kf3n")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.27, 0.09, 0.035, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.92, 0.62, 0.17, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Menu" type="Control" unique_id=5644507]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="Panel" parent="." unique_id=390746554]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="ParchmentGlow" type="Panel" parent="." unique_id=924114139]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -190.0
+offset_right = 360.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner_bg")
+
+[node name="TopLeftGears" type="Control" parent="." unique_id=1679920968]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_gears")
+
+[node name="TopRightGears" type="Control" parent="." unique_id=1959502769]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_gears")
+corner = 1
+
+[node name="BottomLeftGears" type="Control" parent="." unique_id=214679417]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_gears")
+corner = 2
+
+[node name="BottomRightGears" type="Control" parent="." unique_id=201718383]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_gears")
+corner = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=857113744]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=858032701]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=326075812]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.045, 0.015, 1)
+theme_override_font_sizes/font_size = 46
+text = "Tubos y Engranajes"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1820719735]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.31, 0.11, 0.035, 1)
+theme_override_font_sizes/font_size = 18
+text = "Sobrevivi al fallo de las maquinas"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=271016198]
+custom_minimum_size = Vector2(280, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.38, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+text = "Iniciar partida"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1160536046]
+custom_minimum_size = Vector2(280, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.38, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+text = "Salir"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,246 @@
+[gd_scene format=3 uid="uid://cbaithcc0ehsq"]
+
+[ext_resource type="Script" uid="uid://dbnqa8mrbg64l" path="res://Assets/Scripts/character_select_menu.gd" id="1_select"]
+[ext_resource type="Texture2D" uid="uid://cylwuagka20lp" path="res://Assets/Images/ingeniero.png" id="2_engineer"]
+[ext_resource type="Script" uid="uid://cllrl73sb2nm4" path="res://Assets/Scripts/gear_decoration.gd" id="3_gears"]
+[ext_resource type="Texture2D" uid="uid://f14fbs0mmtlj" path="res://Assets/Images/mecanico.png" id="4_mechanic"]
+[ext_resource type="Texture2D" uid="uid://c1tsgppynkvvg" path="res://Assets/Images/electricista.png" id="5_electrician"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.58, 0.39, 0.14, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inner_bg"]
+bg_color = Color(0.82, 0.66, 0.34, 0.82)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.28, 0.06, 0.025, 0.88)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.74, 0.55, 0.24, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.31, 0.07, 0.025, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.27, 0.09, 0.035, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.92, 0.62, 0.17, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="CharacterSelectMenu" type="Control" unique_id=994780840]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_select")
+
+[node name="Background" type="Panel" parent="." unique_id=759722263]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="ParchmentGlow" type="Panel" parent="." unique_id=564541615]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -521.0
+offset_top = -270.0
+offset_right = 500.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner_bg")
+
+[node name="TopLeftGears" type="Control" parent="." unique_id=1408884276]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_gears")
+
+[node name="TopRightGears" type="Control" parent="." unique_id=552020306]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_gears")
+corner = 1
+
+[node name="BottomLeftGears" type="Control" parent="." unique_id=96918917]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_gears")
+corner = 2
+
+[node name="BottomRightGears" type="Control" parent="." unique_id=1231452692]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_gears")
+corner = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=737035041]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=242050499]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1350121619]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.045, 0.015, 1)
+theme_override_font_sizes/font_size = 40
+text = "Elegir personaje"
+horizontal_alignment = 1
+
+[node name="CharacterRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=551224627]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="EngineerCard" type="PanelContainer" parent="CenterContainer/VBoxContainer/CharacterRow" unique_id=68580638]
+custom_minimum_size = Vector2(280, 410)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="CardContent" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CharacterRow/EngineerCard" unique_id=2112817132]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Portrait" type="TextureRect" parent="CenterContainer/VBoxContainer/CharacterRow/EngineerCard/CardContent" unique_id=58307279]
+custom_minimum_size = Vector2(260, 300)
+layout_mode = 2
+texture = ExtResource("2_engineer")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="CenterContainer/VBoxContainer/CharacterRow/EngineerCard/CardContent" unique_id=262987822]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.055, 0.02, 1)
+theme_override_font_sizes/font_size = 22
+text = "Ingeniero"
+horizontal_alignment = 1
+
+[node name="ChooseButton" type="Button" parent="CenterContainer/VBoxContainer/CharacterRow/EngineerCard/CardContent" unique_id=1524696630]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.38, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+text = "Elegir"
+
+[node name="MechanicCard" type="PanelContainer" parent="CenterContainer/VBoxContainer/CharacterRow" unique_id=475868608]
+custom_minimum_size = Vector2(280, 410)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="CardContent" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CharacterRow/MechanicCard" unique_id=281805031]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Portrait" type="TextureRect" parent="CenterContainer/VBoxContainer/CharacterRow/MechanicCard/CardContent" unique_id=781910993]
+custom_minimum_size = Vector2(260, 300)
+layout_mode = 2
+texture = ExtResource("4_mechanic")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="CenterContainer/VBoxContainer/CharacterRow/MechanicCard/CardContent" unique_id=1833789332]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.055, 0.02, 1)
+theme_override_font_sizes/font_size = 22
+text = "Mecanico"
+horizontal_alignment = 1
+
+[node name="ChooseButton" type="Button" parent="CenterContainer/VBoxContainer/CharacterRow/MechanicCard/CardContent" unique_id=1079211622]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.38, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+text = "Elegir"
+
+[node name="WelderCard" type="PanelContainer" parent="CenterContainer/VBoxContainer/CharacterRow" unique_id=465753334]
+custom_minimum_size = Vector2(280, 410)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="CardContent" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CharacterRow/WelderCard" unique_id=69278759]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Portrait" type="TextureRect" parent="CenterContainer/VBoxContainer/CharacterRow/WelderCard/CardContent" unique_id=1266743448]
+custom_minimum_size = Vector2(260, 300)
+layout_mode = 2
+texture = ExtResource("5_electrician")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="CenterContainer/VBoxContainer/CharacterRow/WelderCard/CardContent" unique_id=550545509]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.055, 0.02, 1)
+theme_override_font_sizes/font_size = 22
+text = "Electricista"
+horizontal_alignment = 1
+
+[node name="ChooseButton" type="Button" parent="CenterContainer/VBoxContainer/CharacterRow/WelderCard/CardContent" unique_id=1577258589]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.38, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+text = "Elegir"
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=89230370]
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.38, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+text = "Volver"

@@ -1,0 +1,132 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Assets/Scripts/pause_menu.gd" id="1_pause"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.045, 0.044, 0.04, 0.96)
+border_width_right = 2
+border_color = Color(0.82, 0.62, 0.25, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icon"]
+bg_color = Color(0.13, 0.12, 0.1, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.74, 0.55, 0.22, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 30
+script = ExtResource("1_pause")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.25)
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 10
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_right = 330.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "PAUSA"
+horizontal_alignment = 1
+
+[node name="UpgradeIcons" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="UpgradeIcon1" type="Label" parent="Panel/MarginContainer/VBoxContainer/UpgradeIcons"]
+custom_minimum_size = Vector2(64, 58)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_icon")
+text = "--
+0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeIcon2" type="Label" parent="Panel/MarginContainer/VBoxContainer/UpgradeIcons"]
+custom_minimum_size = Vector2(64, 58)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_icon")
+text = "--
+0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeIcon3" type="Label" parent="Panel/MarginContainer/VBoxContainer/UpgradeIcons"]
+custom_minimum_size = Vector2(64, 58)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_icon")
+text = "--
+0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeIcon4" type="Label" parent="Panel/MarginContainer/VBoxContainer/UpgradeIcons"]
+custom_minimum_size = Vector2(64, 58)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_icon")
+text = "--
+0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 18
+text = "Nivel: 1"
+
+[node name="ButtonRow" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ContinueButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+focus_mode = 2
+text = "Continuar"
+
+[node name="MainMenuButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonRow"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+focus_mode = 2
+text = "Menu inicial"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/ButtonRow/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/ButtonRow/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

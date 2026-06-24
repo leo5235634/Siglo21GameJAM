@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bx3rc2jnaixr3"]
+
+[ext_resource type="Script" uid="uid://rwgteqerjljv" path="res://Assets/Scripts/gema.gd" id="1_ehdng"]
+[ext_resource type="Texture2D" uid="uid://bb5y8pjqiqwr" path="res://Assets/Images/engranaje.png" id="2_p2jxj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehdng"]
+size = Vector2(47, 42)
+
+[node name="Gema" type="Area2D" unique_id=1003824480]
+collision_mask = 4
+script = ExtResource("1_ehdng")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1258574301]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_p2jxj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=588899489]
+visibility_layer = 5
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_ehdng")

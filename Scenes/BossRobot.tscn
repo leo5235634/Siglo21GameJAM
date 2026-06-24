@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bt13rck1asjrm"]
+
+[ext_resource type="Script" uid="uid://6vfi1dbqv7h2" path="res://Assets/Scripts/boss_robot.gd" id="1_boss"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Enemigo_RobotGordo.png" id="2_boss_robot"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(150, 132)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_attack"]
+radius = 92.0
+
+[node name="BossRobot" type="CharacterBody2D" unique_id=2105881759 groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_boss")
+speed = 70.0
+max_health = 2000.0
+experience_value = 350.0
+damage = 100
+defense_penetration = 0.75
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1564342201]
+position = Vector2(0, -4)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("2_boss_robot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1841133395]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=344782027]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=414104551]
+shape = SubResource("CircleShape2D_attack")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=1658653682]
+wait_time = 1.2
+one_shot = true
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

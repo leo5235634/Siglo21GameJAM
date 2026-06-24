@@ -11,18 +11,24 @@ config_version=5
 [application]
 
 config/name="Siglo21Jam"
-run/main_scene="uid://e3hookq6tykq"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="uid://b1mlwqjoxubjg"
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*uid://bmmon6rf8yf1l"
+AudioManager="*res://Assets/Scripts/audio_manager.gd"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[global_group]
+
+Player=""
+Enemy=""
 
 [input]
 

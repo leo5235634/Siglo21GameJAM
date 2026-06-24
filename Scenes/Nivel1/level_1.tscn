@@ -1,20 +1,40 @@
 [gd_scene format=3 uid="uid://e3hookq6tykq"]
 
-[ext_resource type="PackedScene" uid="uid://bppsc7c8a1n31" path="res://Scenes/Player.tscn" id="1_fuxb2"]
+[ext_resource type="PackedScene" uid="uid://beki1ywgtr72d" path="res://Scenes/Player.tscn" id="1_fuxb2"]
+[ext_resource type="Script" uid="uid://blb2amqjlipn8" path="res://Assets/Scripts/Stats.gd" id="2_3j6pp"]
 [ext_resource type="PackedScene" uid="uid://ckgoi32vehqv0" path="res://Scenes/enemigo1.tscn" id="2_4mosc"]
 [ext_resource type="Script" uid="uid://b6li1kogw11yc" path="res://Assets/Scripts/spawn.gd" id="3_t1snq"]
 
-[node name="level1" type="Node2D" unique_id=892134322]
+[sub_resource type="Resource" id="Resource_3j6pp"]
+resource_local_to_scene = true
+script = ExtResource("2_3j6pp")
+metadata/_custom_type_script = "uid://blb2amqjlipn8"
 
-[node name="CharacterBody2D" parent="." unique_id=1853936701 instance=ExtResource("1_fuxb2")]
-position = Vector2(770, 249)
+[sub_resource type="Resource" id="Resource_3n64g"]
+resource_local_to_scene = true
+script = ExtResource("2_3j6pp")
+base_max_health = 10.0
+base_damage_reduction = 0.1
+base_physical_resistance = 0.35
+base_electric_resistance = 0.02
+base_fire_resistance = 0.02
+base_pickup_range = 2.0
+metadata/_custom_type_script = "uid://blb2amqjlipn8"
+
+[node name="level1" type="Node2D" unique_id=892134322]
 
 [node name="CharacterBody2D2" parent="." unique_id=1511046092 instance=ExtResource("2_4mosc")]
 position = Vector2(156, 307.00003)
-speed = 150.0
+max_health = 10.0
+stats = SubResource("Resource_3j6pp")
 
 [node name="spawn" type="Node2D" parent="." unique_id=1039921552]
 script = ExtResource("3_t1snq")
+base_wait_time = 1.5
+min_wait_time = 0.5
+wait_time_decrease_per_minute = 0.12
+enemy_health_growth_per_minute = 0.5
+enemy_damage_growth_per_minute = 5.0
 
 [node name="x1" type="Marker2D" parent="spawn" unique_id=2084239494]
 
@@ -27,7 +47,11 @@ position = Vector2(1083, 0)
 position = Vector2(-1, 641)
 
 [node name="Timer" type="Timer" parent="." unique_id=2144085336]
-wait_time = 4.0
+wait_time = 0.2
 autostart = true
+
+[node name="Player" parent="." unique_id=259061177 instance=ExtResource("1_fuxb2")]
+position = Vector2(566, 328)
+stats = SubResource("Resource_3n64g")
 
 [connection signal="timeout" from="Timer" to="spawn" method="_on_timer_timeout"]
